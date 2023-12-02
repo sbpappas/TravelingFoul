@@ -15,6 +15,7 @@ airports = ['ATL','DFW','DEN','ORD','LAX','JFK',
             'LGA','DTW']
 
 weathersite = 'https://world-weather.info/forecast/usa/san_antonio/february-2024/'
+
 heads = {'User-Agent': 'JBrigham/SPappas Traveling Foul project'}
 weatherdata = requests.get(weathersite, headers = heads)
 weathersoup = BeautifulSoup(weatherdata.text)
@@ -24,12 +25,21 @@ print(days)
 print(days[0], '1')
 print(days[1],'2')
 
+#flight id (primary key), destination, origin, price, departure date time, arrival date time, airline
+
+#weatherid (key), location (same as flight destination), temp_hi, temp_lo, description, date 
 x = 1
 calendar.monthrange(2023,x)
-
 orig_flight = 'PHX'#input('Enter Airport flying from')
 dest_flight = 'LAX'#input('Enter airport flying to')
-
+#postgresql port num is 5432, superuser pasword is spappas
+conn = psycopg2.connect('dbname=postgres user=postgres password=spappas')
+cursor = conn.cursor()
+cursor.execute("CREATE TABLE example (id serial PRIMARY KEY, num integer);")
+cursor.execute("INSERT INTO example (num) VALUES (100);")
+cursor.execute("SELECT * FROM example;")
+cursor.fetchone()
+(1, 100)
 
 result = Scrape('JFK', 'IST', '2023-08-20')
 ScrapeObjects(result)
