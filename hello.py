@@ -30,7 +30,11 @@ calendar.monthrange(2023,x)
 orig_flight = 'PHX'#input('Enter Airport flying from')
 dest_flight = 'LAX'#input('Enter airport flying to')
 
-flight data = google_flight_analysis.scrape()
+
+result = Scrape('JFK', 'IST', '2023-08-20')
+ScrapeObjects(result)
+fullrest = result.data.to_string() #see data
+
 
 
 
