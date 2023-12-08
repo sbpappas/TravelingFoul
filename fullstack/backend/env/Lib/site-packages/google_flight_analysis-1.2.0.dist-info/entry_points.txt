@@ -1,0 +1,2 @@
+[console_scripts]
+flight_analysis = flight_analysis.app:entry_point
